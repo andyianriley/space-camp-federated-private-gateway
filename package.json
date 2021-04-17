@@ -17,8 +17,8 @@
   "scripts": {
     "server": "concurrently -k npm:server:*",
     "server:rest": "json-server -q db.json",
-    "server:astronauts": "nodemon astronauts.js",
-    "server:mission": "nodemon missions.js",
+    "server:astronauts": "nodemon astronauts-server.js",
+    "server:mission": "nodemon missions-server.js",
     "server:graphql": "nodemon federated-server.js",
     "graphql": "nodemon server.js"
   },

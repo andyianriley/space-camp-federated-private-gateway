@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
-const { getMissionByAstronaut, getCrew, getMissionById, getMissions} = require("services/missions")
+const { getMissionByAstronaut, getCrew, getMissionById, getMissions} = require("./services/missions")
 
 const port = 4002;
 
