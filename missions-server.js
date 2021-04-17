@@ -1,9 +1,8 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
-const fetch = require("node-fetch");
+const { getMissionByAstronaut, getCrew, getMissionById, getMissions} = require("services/missions")
 
 const port = 4002;
-const apiUrl = "http://localhost:3000";
 
 const typeDefs = gql`
   type Mission {
@@ -28,25 +27,20 @@ const typeDefs = gql`
 const resolvers = {
   Astronaut: {
     async missions(astronaut) {
-      const res = await fetch(`${apiUrl}/missions`);
-      const missions = await res.json();
-
-      return missions.filter(({ crew }) =>
-        crew.includes(parseInt(astronaut.id))
-      );
+      return getMissionByAstronaut(astronaut);
     }
   },
   Mission: {
     crew(mission) {
-      return mission.crew.map(id => ({ __typename: "Astronaut", id }));
+      return getCrew(mission);
     }
   },
   Query: {
     mission(_, { id }) {
-      return fetch(`${apiUrl}/missions/${id}`).then(res => res.json());
+      return getMissionById(id);
     },
     missions() {
-      return fetch(`${apiUrl}/missions`).then(res => res.json());
+      return getMissions();
     }
   }
 };

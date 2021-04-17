@@ -1,9 +1,8 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
-const fetch = require("node-fetch");
+const { getAstronaut, getAstronautByRef, getAstronauts} = require("services/astronauts")
 
 const port = 4001;
-const apiUrl = "http://localhost:3000";
 
 const typeDefs = gql`
   type Astronaut @key(fields: "id") {
@@ -20,15 +19,15 @@ const typeDefs = gql`
 const resolvers = {
   Astronaut: {
     __resolveReference(ref) {
-      return fetch(`${apiUrl}/astronauts/${ref.id}`).then(res => res.json());
+      return getAstronautByRef(ref);
     }
   },
   Query: {
     astronaut(_, { id }) {
-      return fetch(`${apiUrl}/astronauts/${id}`).then(res => res.json());
+      return getAstronaut(id);
     },
     astronauts() {
-      return fetch(`${apiUrl}/astronauts`).then(res => res.json());
+      return getAstronauts()
     }
   }
 };
