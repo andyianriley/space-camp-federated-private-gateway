@@ -10,8 +10,10 @@
     "concurrently": "^5.1.0",
     "graphql": "^15.0.0",
     "json-server": "^0.16.1",
+    "lodash": "^4.17.21",
     "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "request-promise-native": "^1.0.9"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,6 +22,7 @@
     "server:astronauts": "nodemon astronauts-server.js",
     "server:mission": "nodemon missions-server.js",
     "server:graphql": "nodemon federated-server.js",
+    "server:gateway": "nodemon gateway/index.js",
     "graphql": "nodemon server.js"
   },
   "keywords": [],
