@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const apiUrl = "http://localhost:3000";
+const apiUrl = "http://localhost:3001";
 
 const getMissionByAstronaut = async (astronaut) => {
   const res = await fetch(`${apiUrl}/missions`);

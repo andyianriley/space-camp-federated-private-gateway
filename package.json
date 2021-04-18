@@ -1,31 +1,24 @@
 {
-  "name": "space-camp-federation-demo",
+  "name": "@ridley/space-camp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private":"true",
   "dependencies": {
-    "@apollo/federation": "^0.14.1",
-    "@apollo/gateway": "^0.14.1",
-    "apollo-server": "^2.15.0",
-    "concurrently": "^5.1.0",
-    "graphql": "^15.0.0",
-    "json-server": "^0.16.1",
-    "lodash": "^4.17.21",
-    "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.3",
-    "request-promise-native": "^1.0.9"
+    "concurrently": "^5.1.0"
   },
   "devDependencies": {},
   "scripts": {
-    "server": "concurrently -k npm:server:*",
-    "server:rest": "json-server -q db.json",
-    "server:astronauts": "nodemon astronauts-server.js",
-    "server:mission": "nodemon missions-server.js",
-    "server:graphql": "nodemon federated-server.js",
-    "server:gateway": "nodemon gateway/index.js",
-    "graphql": "nodemon server.js"
+    "start:rest": "concurrently 'cd packages/astronauts && yarn start:rest' 'cd packages/missions && yarn start:rest'",
+    "start:gql": "cd packages/apollo-server && yarn start",
+    "start:federated": "concurrently 'cd packages/astronauts && yarn start' 'cd packages/missions && yarn start'",
+    "start:apollo-gateway": "cd packages/apollo-gateway && yarn start",
+    "start:private-gateway": "cd packages/gateway && yarn start"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ]
 }

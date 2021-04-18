@@ -28,8 +28,8 @@ app.all('*', (req, res) => {
 	return res.status(404).send('404 - Not found!');
 });
 
-app.listen(4000, () => {
-	console.info('Server listening on port: 4000');
+app.listen(4005, () => {
+	console.info('Server listening on port: 4005');
 });
 
 // graphql part

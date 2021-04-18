@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
-const { getMissionByAstronaut, getCrew, getMissionById, getMissions} = require("./services/missions")
-const { getAstronaut, getAstronautByRef, getAstronauts} = require("./services/astronauts")
+const { getMissionByAstronaut, getCrew, getMissionById, getMissions} = require("@ridley/missions/missions")
+const { getAstronaut, getAstronautByRef, getAstronauts} = require("@ridley/astronauts/astronauts")
 
 
 const port = 4003;
@@ -63,10 +63,7 @@ const resolvers = {
 
 const server = new ApolloServer({
   typeDefs, resolvers,
-  subscriptions: false,
-  engine: {
-    reportSchema: true,
-  }
+  subscriptions: false
 });
 
 server.listen({ port }).then(({ url }) => {

@@ -3,20 +3,18 @@
 ## Installation:
 
 ```sh
-npm i
+yarn install
 ```
 
-## Running Non-Federated:
-
-Create a graph at https://studio.apollographql.com/
+## Running
 
 Run fake webservice for data (used by apollo servers)
 
-`npm run server:rest`
+`yarn start:rest`
 
 Run apollo servers
 
-`APOLLO_KEY=<the key> npm run graphql`
+`yarn gql`
 
 View the graphql at http://localhost:4003
 
@@ -24,15 +22,13 @@ View the graphql at http://localhost:4003
 
 Create a graph at https://studio.apollographql.com/
 
-Run fake webservice for data (used by federated apollo servers)
+Run fake webservice for data (used by apollo servers)
 
-`npm run server:rest`
+`yarn start:rest`
 
-Run seperate federated apollo servers
+Run federated apollo servers
 
-`npm run server:astronauts`
-
-`npm run server:missions`
+`yarn start:federated`
 
 To publish schema changes
 
@@ -58,6 +54,29 @@ npx apollo service:push \
 
 Run gateway with the key set
 
-`APOLLO_KEY=<the key> npm run server:graphql`
+`APOLLO_KEY=<the key> yarn start:apollo-gateway`
 
 View the graphql at http://localhost:4000
+
+Run private gateway
+
+run private schema registry see 'graphql-schema-registry' at https://github.com/pipedrive/graphql-schema-registry
+
+now run private gateway
+
+`yarn start:private-gateway`
+
+View the graphql at http://localhost:4005
+
+sample query
+
+```
+query {
+  missions {
+    designation
+    crew {
+      name
+    }
+  }
+}
+```
